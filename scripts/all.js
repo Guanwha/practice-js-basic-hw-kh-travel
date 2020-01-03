@@ -1,3 +1,6 @@
+/// variables ///
+let scenesInZone = null;    // scenes in zones
+
 /// functions ///
 
 // get scenes from response text
@@ -20,6 +23,19 @@ let getScenesInZone = (responseText) => {
   return scenesInZone;
 };
 
+// update the zone selection
+let updateZoneList = () => {
+  let el = document.querySelector('#zones');
+  let keys = Object.keys(scenesInZone);
+  let html = '<option value="default"><div class="area-name">-- 請選擇行政區 --</div></option>';
+
+  for (let i=0; i<keys.length; i++) {
+    console.log(`${i} ${keys[i]}`);
+    let subEl = `<option value="${keys[i]}"><div class="area-name">${keys[i]}</div></option>`;
+    html += subEl;
+  }
+  el.innerHTML = html;
+};
 
 /// main code ///
 
@@ -32,8 +48,10 @@ xhr.send();
 
 // analysis data
 let responseText = JSON.parse(xhr.responseText);              // trace json data
-let scenesInZone = getScenesInZone(responseText);             // analysis scenes in every zone
-console.log(Object.keys(scenesInZone));
+scenesInZone = getScenesInZone(responseText);                 // analysis scenes in every zone
+
+// update UI
+updateZoneList();
 
 
 
