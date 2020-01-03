@@ -34,16 +34,31 @@
   border: 3px solid #FFFFFF;
   border-radius: 3px;
 }
-.header .select-area .area-name {
+.header .select-area select {
+  /*移除箭頭樣式*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*改變右邊箭頭樣式*/
+  background: url('../images/icons_down.png') no-repeat right center;
+
+  /* Layout */
+  width: 100%;
+  border: 0;
+  outline: none;
+
+  /* Font */
   font-family: 'PingFangTC-Regular';
   font-size: 18px;
   color: #000000;
   line-height: 21px;
 }
-.header .select-area .dropdown {
-  width: 16px;
-  height: 11px;
-  background-image: url('../images/icons_down.png');
+.header .select-area .area-name {
+  font-family: 'PingFangTC-Regular';
+  font-size: 18px;
+  color: #000000;
+  line-height: 21px;
 }
 .hot-area {
   margin-top: 79px;
