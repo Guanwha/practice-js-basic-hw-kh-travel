@@ -1,32 +1,32 @@
 /// variables ///
-let scenesInZone = null;    // scenes in zones
+let scenesInAllZones = null;    // scenes in zones
 
 /// functions ///
 
 // get scenes from response text
 let getScenesInZone = (responseText) => {
   let records = responseText.result.records;
-  let scenesInZone = {};
+  let scenesInAllZones = {};
   // each record loop
   for (let i=0; i<records.length; i++) {
     let zone = records[i].Zone;
-    // push record data into scenesInZone with key 'zone'
-    if (scenesInZone[zone]) {
+    // push record data into scenesInAllZones with key 'zone'
+    if (scenesInAllZones[zone]) {
       // key 'zone' is exist
-      scenesInZone[zone].push(records[i]);
+      scenesInAllZones[zone].push(records[i]);
     }
     else {
       // new key
-      scenesInZone[zone] = [records[i]];
+      scenesInAllZones[zone] = [records[i]];
     }
   }
-  return scenesInZone;
+  return scenesInAllZones;
 };
 
 // update the zone selection
 let updateZoneList = () => {
   let el = document.querySelector('#zones');
-  let keys = Object.keys(scenesInZone);
+  let keys = Object.keys(scenesInAllZones);
   let html = '<option value="default"><div class="area-name">-- 請選擇行政區 --</div></option>';
 
   for (let i=0; i<keys.length; i++) {
@@ -48,11 +48,21 @@ xhr.send();
 
 // analysis data
 let responseText = JSON.parse(xhr.responseText);              // trace json data
-scenesInZone = getScenesInZone(responseText);                 // analysis scenes in every zone
+scenesInAllZones = getScenesInZone(responseText);                 // analysis scenes in every zone
 
 // update UI
 updateZoneList();
 
+// add listener
+let scenesInCurZone = [];                                     // scenes of the current selected zone
+let domSelectZone = document.querySelector('#zones');         // select UI DOM
+if (domSelectZone) {
+  // use addEventListener
+  domSelectZone.addEventListener('change', () => {
+    scenesInCurZone = scenesInAllZones[domSelectZone.value];
+    // [TODO] update the scene list
+  });
+}
 
 
 
