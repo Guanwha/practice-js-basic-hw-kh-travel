@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+/* select zone */
 .header {
   height: 500px;
   width: 1024px;
@@ -60,6 +61,8 @@
   color: #000000;
   line-height: 21px;
 }
+
+/* hot zones */
 .hot-area {
   margin-top: 79px;
   height: 112px;
@@ -99,13 +102,36 @@
   color: #FFFFFF;
 }
 
-hr.separator {
+/* separator */
+.separator {
   width: 1024px;
-  border: 0;
-  border-bottom: 10px dashed #ccc;
-  background: #00000000;
+  height: 24px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.separator::before {
+  content: "";
+  width: 450px;
+  margin-right: 10px;
+  border-top: 1px dashed #559AC8;
+}
+.icon-down {
+  width: 24px;
+  height: 100%;
+  background: #00000000 url("../images/icons_down.png") no-repeat center center;
+  border-radius: 24px;
+  border: 2px solid #559AC8;
+}
+.separator::after {
+  content: "";
+  width: 450px;
+  margin-left: 10px;
+  border-top: 1px dashed #559AC8;
 }
 
+/* scene list */
 .content {
   height: 1000px;
   width: 1024px;
@@ -113,6 +139,7 @@ hr.separator {
   background: pink;
 }
 
+/* footer */
 .footer {
   height: 90px;
   width: 1024px;
