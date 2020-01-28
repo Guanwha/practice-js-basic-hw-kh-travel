@@ -1,5 +1,7 @@
 /// variables ///
 let scenesInAllZones = null;    // scenes in zones
+let currentZoneName = '';       // current selected zone name
+
 
 /// functions ///
 
@@ -37,6 +39,25 @@ let updateZoneList = () => {
   el.innerHTML = html;
 };
 
+// update scene list
+let updateSceneList = () => {
+  console.log(`${currentZoneName} (${scenesInCurZone.length})`);
+
+  // update the zone name
+  let elCurrentZoneName = document.querySelector('#cur-zone-name');
+  elCurrentZoneName.textContent = currentZoneName;
+
+  // update the scene cards in the list
+  let elSceneListContent = document.querySelector('#scene-list');
+  let subEl = '<div class="scene-card"></div>';
+  let html = '';
+  for (let i=0; i<scenesInCurZone.length; i++) {
+    html += subEl;
+  }
+  elSceneListContent.innerHTML = html;
+}
+
+
 /// main code ///
 
 // get the data from Internet
@@ -59,8 +80,10 @@ let domSelectZone = document.querySelector('#zones');         // select UI DOM
 if (domSelectZone) {
   // use addEventListener
   domSelectZone.addEventListener('change', () => {
-    scenesInCurZone = scenesInAllZones[domSelectZone.value];
-    // [TODO] update the scene list
+    currentZoneName = domSelectZone.value;
+    scenesInCurZone = scenesInAllZones[currentZoneName];
+    // update the scene list
+    updateSceneList();
   });
 }
 

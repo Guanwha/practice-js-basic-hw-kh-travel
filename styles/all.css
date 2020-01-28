@@ -133,11 +133,37 @@
 
 /* scene list */
 .content {
-  height: 1000px;
+  /* height: 1000px; */
   width: 1024px;
   margin: 0 auto;
+  margin-top: 65px;
   background: pink;
 }
+.content #cur-zone-name {
+  text-align: center;
+  font-family: "SFNSDisplay";
+  font-size: 36px;
+  color: #8A82CC;
+}
+.content #scene-list {
+  margin-top: 24px;
+  padding: 0 32px 0 32px;
+  background-color: gray;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.scene-card {
+  height: 273px;
+  width: 464px;
+  background-color: #559AC8;
+  margin: 0 8px 36px 8px;
+  float: left;
+}
+
 
 /* footer */
 .footer {
