@@ -49,7 +49,7 @@ let updateSceneList = () => {
 
   // update the scene cards in the list
   let elSceneListContent = document.querySelector('#scene-list');
-  let subEl = '<div class="scene-card"></div>';
+  let subEl = '<li class="scene-card"></li>';
   let html = '';
   for (let i=0; i<scenesInCurZone.length; i++) {
     html += subEl;
