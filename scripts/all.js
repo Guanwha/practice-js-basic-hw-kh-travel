@@ -49,6 +49,7 @@ let updateSceneList = () => {
 
   // update the scene cards in the list
   let elSceneListContent = document.querySelector('#scene-list');
+  elSceneListContent.innerHTML = '';
   let subEl = '<li class="scene-card"></li>';
   let html = '';
   for (let i=0; i<scenesInCurZone.length; i++) {
@@ -83,7 +84,7 @@ if (domSelectZone) {
     currentZoneName = domSelectZone.value;
     scenesInCurZone = scenesInAllZones[currentZoneName];
     // update the scene list
-    updateSceneList();
+    // updateSceneList();
   });
 }
 

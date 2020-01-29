@@ -119,7 +119,7 @@
 }
 .icon-down {
   width: 24px;
-  height: 100%;
+  height: 24px;
   background: #00000000 url("../images/icons_down.png") no-repeat center center;
   border-radius: 24px;
   border: 2px solid #559AC8;
@@ -156,12 +156,86 @@
   clear: both;
 }
 
+/* scene card layout */
 .scene-card {
   height: 273px;
   width: 464px;
   background-color: #559AC8;
   margin: 0 8px 36px 8px;
   float: left;
+}
+.card-top {
+  width: 100%;
+  height: 155px;
+  background: red;
+  position: relative;
+}
+.scene-card .bg {
+  width: 100%;
+  height: 100%;
+  background-image: url('http://khh.travel/FileArtPic.ashx?id=705&w=1280&h=960');
+  background-size: cover;
+  background-position: center;
+}
+.scene-card .name {
+  font-family: 'SFNSDisplay';
+  font-size: 24px;
+  color: #FFFFFF;
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+}
+.scene-card .zone {
+  font-family: 'PingFangTC-Regular';
+  font-size: 16px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 24px;
+  bottom: 11px;
+}
+.card-bottom {
+  width: 100%;
+  height: 119px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+  position: relative;
+  padding: 18px 24px 18px 24px;
+}
+.scene-card .info {
+  font-family: 'AppleSystemUIFont';
+  font-size: 16px;
+  color: #000000;
+}
+.scene-card .tag {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+}
+
+/* icons */
+.icon-opentime {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_clock.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-add {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_pin.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-tel {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_phone.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-tag {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_tag.png") no-repeat center center;
+  margin-right: 9px;
 }
 
 
@@ -171,4 +245,18 @@
   width: 1024px;
   margin: 0 auto;
   background: rgba(85,154,200,1);
+}
+
+
+/*** tools ***/
+.flex-rlc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-ccl {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
