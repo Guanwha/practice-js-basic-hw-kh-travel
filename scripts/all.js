@@ -1,8 +1,9 @@
 /// variables ///
-let scenesInAllZones = null;    // scenes in zones
-let currentZoneName = '';       // current selected zone name
-const cardsPerPage = 8;         // cards number per page
-let currentPageIdx = 0;         // current page indxe (0~) of scene list
+const defaultOption = 'default';  // default option value
+let scenesInAllZones = null;      // scenes in zones
+let currentZoneName = '';         // current selected zone name
+const cardsPerPage = 8;           // cards number per page
+let currentPageIdx = 0;           // current page indxe (0~) of scene list
 
 
 /// functions ///
@@ -31,7 +32,7 @@ let getScenesInZone = (responseText) => {
 let updateZoneList = () => {
   let el = document.querySelector('#zones');
   let keys = Object.keys(scenesInAllZones);
-  let html = '<option value="default"><div class="area-name">-- 請選擇行政區 --</div></option>';
+  let html = `<option value=${defaultOption}><div class="area-name">-- 請選擇行政區 --</div></option>`;
 
   for (let i=0; i<keys.length; i++) {
     console.log(`${i} ${keys[i]}`);
@@ -53,7 +54,7 @@ let updateSceneList = (idxPage) => {
   let iStart = idxPage * cardsPerPage;
   iStart = (iStart >= scenesInCurZone.length) ? Math.floor(scenesInCurZone.length / cardsPerPage) * cardsPerPage : iStart;
   let iEnd = iStart + cardsPerPage;
-  iEnd = (iEnd >= scenesInCurZone.length) ? scenesInCurZone.length - 1 : iEnd;
+  iEnd = (iEnd >= scenesInCurZone.length) ? scenesInCurZone.length : iEnd;
   console.log(`show scene ${iStart} ~ ${iEnd}`);
 
   // update the scene cards in the list
@@ -178,6 +179,13 @@ if (domSelectZone) {
   domSelectZone.addEventListener('change', () => {
     currentZoneName = domSelectZone.value;
     scenesInCurZone = scenesInAllZones[currentZoneName];
+
+    // check the selection
+    if (currentZoneName == defaultOption || !scenesInCurZone) {
+      currentZoneName = '';
+      scenesInCurZone = [];
+    }
+
     // update the scene list
     updateSceneList(currentPageIdx);
   });
