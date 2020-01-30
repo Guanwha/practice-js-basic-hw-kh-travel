@@ -1,6 +1,8 @@
 /// variables ///
 let scenesInAllZones = null;    // scenes in zones
 let currentZoneName = '';       // current selected zone name
+const cardsPerPage = 8;         // cards number per page
+let currentPageIdx = 0;         // current page indxe (0~) of scene list
 
 
 /// functions ///
@@ -40,17 +42,24 @@ let updateZoneList = () => {
 };
 
 // update scene list
-let updateSceneList = () => {
+let updateSceneList = (idxPage) => {
   console.log(`${currentZoneName} (${scenesInCurZone.length})`);
 
   // update the zone name
   let elCurrentZoneName = document.querySelector('#cur-zone-name');
   elCurrentZoneName.textContent = currentZoneName;
 
+  // check range of scenes according to page index to display
+  let iStart = idxPage * cardsPerPage;
+  iStart = (iStart >= scenesInCurZone.length) ? Math.floor(scenesInCurZone.length / cardsPerPage) * cardsPerPage : iStart;
+  let iEnd = iStart + cardsPerPage;
+  iEnd = (iEnd >= scenesInCurZone.length) ? scenesInCurZone.length - 1 : iEnd;
+  console.log(`show scene ${iStart} ~ ${iEnd}`);
+
   // update the scene cards in the list
   let elSceneListContent = document.querySelector('#scene-list');
   elSceneListContent.innerHTML = '';
-  for (let i=0; i<scenesInCurZone.length; i++) {
+  for (let i=iStart; i<iEnd; i++) {
     elSceneListContent.appendChild(genSceneCard(scenesInCurZone[i]));
   }
 }
@@ -170,7 +179,7 @@ if (domSelectZone) {
     currentZoneName = domSelectZone.value;
     scenesInCurZone = scenesInAllZones[currentZoneName];
     // update the scene list
-    updateSceneList();
+    updateSceneList(currentPageIdx);
   });
 }
 
