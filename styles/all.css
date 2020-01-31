@@ -279,6 +279,17 @@
   margin: 0 auto;
   background: rgba(85,154,200,1);
 }
+.footer .title {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.footer .from {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #FFD366;
+  margin-top: 15px;
+}
 
 
 /*** tools ***/
@@ -297,4 +308,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+.flex-ccc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
