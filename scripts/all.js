@@ -43,7 +43,7 @@ let updateZoneList = () => {
 };
 
 // update scene list
-let updateSceneList = (idxPage) => {
+let updateSceneList = () => {
   console.log(`${currentZoneName} (${scenesInCurZone.length})`);
 
   // update the zone name
@@ -51,11 +51,11 @@ let updateSceneList = (idxPage) => {
   elCurrentZoneName.textContent = currentZoneName;
 
   // check range of scenes according to page index to display
-  let iStart = idxPage * cardsPerPage;
+  let iStart = currentPageIdx * cardsPerPage;
   iStart = (iStart >= scenesInCurZone.length) ? Math.floor(scenesInCurZone.length / cardsPerPage) * cardsPerPage : iStart;
   let iEnd = iStart + cardsPerPage;
   iEnd = (iEnd >= scenesInCurZone.length) ? scenesInCurZone.length : iEnd;
-  console.log(`show scene ${iStart} ~ ${iEnd}`);
+  // console.log(`show scene ${iStart} ~ ${iEnd}`);
 
   // update the scene cards in the list
   let elSceneListContent = document.querySelector('#scene-list');
@@ -63,6 +63,11 @@ let updateSceneList = (idxPage) => {
   for (let i=iStart; i<iEnd; i++) {
     elSceneListContent.appendChild(genSceneCard(scenesInCurZone[i]));
   }
+
+  // update the page navigatin bar
+  let elPageNav = document.querySelector('#page-nav');
+  elPageNav.innerHTML = '';
+  updatePageNav(scenesInCurZone);
 }
 
 // scene card
@@ -154,6 +159,73 @@ let genSceneCard = (scene) => {
   return el;
 }
 
+// page navigation
+let updatePageNav = (scenes) => {
+  // <div id="page-nav" class="page-nav flex-rcc">
+  //   <button class="btn invalid">< prev</button>
+  //   <button class="btn selected">1</button>
+  //   <button class="btn valid">2</button>
+  //   <button class="btn valid">3</button>
+  //   <button class="btn valid">next ></button>
+  // </div>
+
+  let el = document.querySelector('#page-nav');
+  el.setAttribute('class', 'page-nav flex-rcc');
+  el.innerHTML = '';
+
+  // check how many pages
+  let nPages = Math.ceil(scenes.length / cardsPerPage);
+
+  // generate the previous button
+  let elBtnPrev = document.createElement('button');
+  elBtnPrev.textContent = '< prev';
+  if (currentPageIdx > 0) {
+    elBtnPrev.setAttribute('class', 'btn valid');
+    elBtnPrev.addEventListener('click', () => {
+      currentPageIdx--;
+      updateSceneList();
+    });
+  }
+  else {
+    elBtnPrev.setAttribute('class', 'btn invalid');
+  }
+  el.appendChild(elBtnPrev);
+
+  // generate the page buttons
+  for (let i=0; i<nPages; i++) {
+    let elBtnPage = document.createElement('button');
+    elBtnPage.textContent = `${i+1}`;
+    if (i == currentPageIdx) {
+      elBtnPage.setAttribute('class', 'btn selected');
+    }
+    else {
+      elBtnPage.setAttribute('class', 'btn valid');
+      elBtnPage.addEventListener('click', () => {
+        currentPageIdx = i;
+        updateSceneList();
+      });
+    }
+    el.appendChild(elBtnPage);
+  }
+
+  // generate the next button
+  let elBtnNext = document.createElement('button');
+  elBtnNext.textContent = 'next >';
+  if (currentPageIdx < nPages - 1) {
+    elBtnNext.setAttribute('class', 'btn valid');
+    elBtnNext.addEventListener('click', () => {
+      currentPageIdx++;
+      updateSceneList();
+    });
+  }
+  else {
+    elBtnNext.setAttribute('class', 'btn invalid');
+  }
+  el.appendChild(elBtnNext);
+
+  return el;
+}
+
 
 /// main code ///
 
@@ -187,7 +259,8 @@ if (domSelectZone) {
     }
 
     // update the scene list
-    updateSceneList(currentPageIdx);
+    currentPageIdx = 0;
+    updateSceneList();
   });
 }
 

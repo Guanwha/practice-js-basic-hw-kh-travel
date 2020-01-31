@@ -236,6 +236,42 @@
 }
 
 
+/* page navigation */
+.page-nav {
+  width: 1024px;
+  height: 50px;
+  margin: 0 auto;
+  background: pink;
+}
+.page-nav .btn {
+  margin: 12px;
+  background: transparent;
+  border-width: 0;
+  outline-width: 0;
+}
+.page-nav .valid {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #4A4A4A;
+}
+.page-nav .valid:hover {
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+}
+.page-nav .valid:active {
+  color: #559AC8;
+}
+.page-nav .invalid {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: rgba(73,73,73,0.50);
+}
+.page-nav .selected {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #559AC8;
+}
+
+
 /* footer */
 .footer {
   height: 90px;
@@ -249,6 +285,11 @@
 .flex-rlc {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+}
+.flex-rcc {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 .flex-ccl {
