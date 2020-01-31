@@ -9,7 +9,7 @@ let currentPageIdx = 0;           // current page indxe (0~) of scene list
 /// functions ///
 
 // get scenes from response text
-let getScenesInZone = (responseText) => {
+let extractScenesPerZone = (responseText) => {
   let records = responseText.result.records;
   let scenesInAllZones = {};
   // each record loop
@@ -238,7 +238,7 @@ xhr.send();
 
 // analysis data
 let responseText = JSON.parse(xhr.responseText);              // trace json data
-scenesInAllZones = getScenesInZone(responseText);                 // analysis scenes in every zone
+scenesInAllZones = extractScenesPerZone(responseText);                 // analysis scenes in every zone
 
 // update UI
 updateZoneList();
