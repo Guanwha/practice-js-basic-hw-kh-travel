@@ -36,12 +36,12 @@
   border-radius: 3px;
 }
 .header .select-area select {
-  /*移除箭頭樣式*/
+  /* 移除箭頭樣式 */
   appearance:none;
   -moz-appearance:none;
   -webkit-appearance:none;
 
-  /*改變右邊箭頭樣式*/
+  /* 改變右邊箭頭樣式 */
   background: url('../images/icons_down.png') no-repeat right center;
 
   /* Layout */
@@ -241,7 +241,6 @@
   width: 1024px;
   height: 50px;
   margin: 0 auto;
-  background: pink;
 }
 .page-nav .btn {
   margin: 12px;
