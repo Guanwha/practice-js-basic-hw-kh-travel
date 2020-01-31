@@ -201,6 +201,11 @@ let updatePageNav = (scenes) => {
   el.setAttribute('class', 'page-nav flex-rcc');
   el.innerHTML = '';
 
+  // check scenes is not empty
+  if (!scenes || scenes.length == 0) {
+    return el;
+  }
+
   // check how many pages
   let nPages = Math.ceil(scenes.length / cardsPerPage);
 
@@ -278,10 +283,11 @@ let domSelectZone = document.querySelector('#zones');         // select UI DOM
 if (domSelectZone) {
   // use addEventListener
   domSelectZone.addEventListener('change', () => {
+    // update the current zone's name and scenes
     currentZoneName = domSelectZone.value;
     scenesInCurZone = scenesInAllZones[currentZoneName];
 
-    // check the selection
+    // check the selection is valid
     if (currentZoneName == defaultOption || !scenesInCurZone) {
       currentZoneName = '';
       scenesInCurZone = [];
