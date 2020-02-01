@@ -100,6 +100,11 @@
   font-family: 'PingFangTC-Regular';
   font-size: 20px;
   color: #FFFFFF;
+  outline-width: 0;
+}
+.hot-area .areas .hot:active {
+  box-shadow:0px 0px 5px #559AC8;
+  border-width: 0;
 }
 
 /* separator */
