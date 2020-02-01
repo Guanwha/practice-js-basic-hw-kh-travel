@@ -1,0 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+
+/* select zone */
+.header {
+  height: 500px;
+  width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  background-image: url('../images/Hero.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.header .title {
+  padding-top: 89px;
+  font-family: 'PingFangTC-Regular';
+  font-size: 40px;
+  color: #FFFFFF;
+  letter-spacing: 3.89px;
+}
+.header .select-area {
+  margin-top: 96px;
+  height: 48px;
+  width: 452px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.70);
+  border: 3px solid #FFFFFF;
+  border-radius: 3px;
+}
+.header .select-area select {
+  /* 移除箭頭樣式 */
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /* 改變右邊箭頭樣式 */
+  background: url('../images/icons_down.png') no-repeat 97% center;
+
+  /* Layout */
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 0;
+  outline: none;
+
+  /* Font */
+  font-family: 'PingFangTC-Regular';
+  font-size: 18px;
+  color: #000000;
+  line-height: 21px;
+}
+.header .select-area .area-name {
+  font-family: 'PingFangTC-Regular';
+  font-size: 18px;
+  color: #000000;
+  line-height: 21px;
+}
+
+/* hot zones */
+.hot-area {
+  margin-top: 79px;
+  height: 112px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+  border-radius: 5px;
+}
+.hot-area .title {
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-left: 26px;
+  padding: 0;
+  color: black;
+  font-family: 'AppleSystemUIFont';
+  font-size: 18px;
+  color: #000000;
+}
+.hot-area .areas {
+  margin-top: 14px;
+  padding-left: 100px;
+  padding-right: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+.hot-area .areas .hot {
+  width: 130px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-family: 'PingFangTC-Regular';
+  font-size: 20px;
+  color: #FFFFFF;
+  outline-width: 0;
+}
+.hot-area .areas .hot:active {
+  box-shadow:0px 0px 5px #559AC8;
+  border-width: 0;
+}
+
+/* separator */
+.separator {
+  width: 1024px;
+  height: 24px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.separator::before {
+  content: "";
+  width: 450px;
+  margin-right: 10px;
+  border-top: 1px dashed #559AC8;
+}
+.icon-down {
+  width: 24px;
+  height: 24px;
+  background: #00000000 url("../images/icons_down.png") no-repeat center center;
+  border-radius: 24px;
+  border: 2px solid #559AC8;
+}
+.separator::after {
+  content: "";
+  width: 450px;
+  margin-left: 10px;
+  border-top: 1px dashed #559AC8;
+}
+
+/* scene list */
+.content {
+  /* height: 1000px; */
+  width: 1024px;
+  margin: 0 auto;
+  margin-top: 65px;
+}
+.content #cur-zone-name {
+  text-align: center;
+  font-family: "SFNSDisplay";
+  font-size: 36px;
+  color: #8A82CC;
+}
+.content #scene-list {
+  margin-top: 24px;
+  padding: 0 32px 0 32px;
+  background-color: gray;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* scene card layout */
+.scene-card {
+  height: 273px;
+  width: 464px;
+  background-color: #559AC8;
+  margin: 0 8px 36px 8px;
+  float: left;
+}
+.card-top {
+  width: 100%;
+  height: 155px;
+  position: relative;
+}
+.scene-card .bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.scene-card .name {
+  font-family: 'SFNSDisplay';
+  font-size: 24px;
+  color: #FFFFFF;
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+}
+.scene-card .zone {
+  font-family: 'PingFangTC-Regular';
+  font-size: 16px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 24px;
+  bottom: 11px;
+}
+.card-bottom {
+  width: 100%;
+  height: 119px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+  position: relative;
+  padding: 18px 24px 18px 24px;
+}
+.scene-card .info {
+  font-family: 'AppleSystemUIFont';
+  font-size: 16px;
+  color: #000000;
+}
+.scene-card .tag {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+}
+
+/* icons */
+.icon-opentime {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_clock.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-add {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_pin.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-tel {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_phone.png") no-repeat center center;
+  margin-right: 9px;
+}
+.icon-tag {
+  width: 20px;
+  height: 20px;
+  background: #00000000 url("../images/icons_tag.png") no-repeat center center;
+  margin-right: 9px;
+}
+
+
+/* page navigation */
+.page-nav {
+  width: 1024px;
+  height: 50px;
+  margin: 0 auto;
+}
+.page-nav .btn {
+  margin: 12px;
+  background: transparent;
+  border-width: 0;
+  outline-width: 0;
+}
+.page-nav .valid {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #4A4A4A;
+}
+.page-nav .valid:hover {
+  text-shadow: 0px 0px 5px rgba(85, 154, 200, 1);
+}
+.page-nav .valid:active {
+  color: #559AC8;
+}
+.page-nav .invalid {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: rgba(73,73,73,0.50);
+}
+.page-nav .selected {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #559AC8;
+}
+
+
+/* footer */
+.footer {
+  height: 90px;
+  width: 1024px;
+  margin: 0 auto;
+  background: rgba(85,154,200,1);
+}
+.footer .title {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.footer .from {
+  font-family: 'AppleSystemUIFont';
+  font-size: 14px;
+  color: #FFD366;
+  margin-top: 15px;
+}
+
+
+/*** tools ***/
+.flex-rlc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-rcc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-ccl {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.flex-ccc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
