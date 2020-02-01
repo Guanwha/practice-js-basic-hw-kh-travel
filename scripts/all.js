@@ -4,6 +4,8 @@ let scenesInAllZones = null;      // scenes in zones
 let currentZoneName = '';         // current selected zone name
 const cardsPerPage = 8;           // cards number per page
 let currentPageIdx = 0;           // current page indxe (0~) of scene list
+const hotZones = ['苓雅區', '三民區', '新興區', '左營區'];    // hot zones
+const hotZoneColors = ['#8A82CC', '#FFA782', '#F5D105', '#559AC8'];
 
 
 /// functions ///
@@ -41,6 +43,32 @@ let updateZoneList = () => {
   }
   el.innerHTML = html;
 };
+
+// generate hot zone UI
+let genHotZone = () => {
+  // <div id="hot-zone-list" class="areas">
+  //   <button class="hot" style="background: #8A82CC">苓雅區</button>
+  //   <button class="hot" style="background: #FFA782">三民區</button>
+  //   <button class="hot" style="background: #F5D105">新興區</button>
+  //   <button class="hot" style="background: #559AC8">鹽埕區</button>
+  // </div>
+
+  let el = document.querySelector('#hot-zone-list');
+  el.innerHTML = '';
+  
+  for (let i=0; i<hotZones.length; i++) {
+    let elZone = document.createElement('button');
+    elZone.setAttribute('class', 'hot');
+    elZone.setAttribute('style', `background: ${hotZoneColors[i]}`);
+    elZone.textContent = `${hotZones[i]}`;
+    elZone.addEventListener('click', (e) => {
+      let elZones = document.querySelector('#zones');
+      elZones.value = e.target.textContent;
+      elZones.dispatchEvent(new Event('change'));       // call the change event of #zones
+    });
+    el.appendChild(elZone);
+  }
+}
 
 // update scene list
 let updateSceneList = () => {
@@ -173,6 +201,11 @@ let updatePageNav = (scenes) => {
   el.setAttribute('class', 'page-nav flex-rcc');
   el.innerHTML = '';
 
+  // check scenes is not empty
+  if (!scenes || scenes.length == 0) {
+    return el;
+  }
+
   // check how many pages
   let nPages = Math.ceil(scenes.length / cardsPerPage);
 
@@ -242,6 +275,7 @@ scenesInAllZones = extractScenesPerZone(responseText);                 // analys
 
 // update UI
 updateZoneList();
+genHotZone();
 
 // add listener
 let scenesInCurZone = [];                                     // scenes of the current selected zone
@@ -249,10 +283,11 @@ let domSelectZone = document.querySelector('#zones');         // select UI DOM
 if (domSelectZone) {
   // use addEventListener
   domSelectZone.addEventListener('change', () => {
+    // update the current zone's name and scenes
     currentZoneName = domSelectZone.value;
     scenesInCurZone = scenesInAllZones[currentZoneName];
 
-    // check the selection
+    // check the selection is valid
     if (currentZoneName == defaultOption || !scenesInCurZone) {
       currentZoneName = '';
       scenesInCurZone = [];
